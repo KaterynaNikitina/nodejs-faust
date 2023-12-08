@@ -35,6 +35,7 @@ const userSchema = new Schema(
     verificationCode: {
       type: String,
     },
+
   },
   { versionKey: false }
 );

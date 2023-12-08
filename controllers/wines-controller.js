@@ -1,8 +1,11 @@
+import fs from "fs/promises";
+
 import Wine from "../models/Wine.js";
 
 // import { HttpError } from "../helpers/index.js";
-
+import { cloudinary } from "../helpers/index.js";
 import { ctrlWrapper } from "../decorators/index.js";
+
 
 const getAll = async (req, res) => {
     const result = await Wine.find();
@@ -20,8 +23,14 @@ const getAll = async (req, res) => {
 // }
 
 const add = async (req, res) => {
-   
-    const result = await Wine.create(req.body);
+    // console.log(req.body);
+    // console.log(req.file);
+    const {path: oldPath} = req.file;
+    // const { fileData } = await cloudinary.uploader.upload(oldPath, {folder: "posters"});
+    const { url: poster } = await cloudinary.uploader.upload(oldPath, {folder: "posters"});
+    await fs.unlink(oldPath);
+
+    const result = await Wine.create({...req.body, poster});
     res.status(201).json(result);
 }
 

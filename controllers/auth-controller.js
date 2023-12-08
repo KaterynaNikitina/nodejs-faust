@@ -14,16 +14,15 @@ import "dotenv/config";
 const { JWT_SECRET, BASE_URL } = process.env;
 
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
     throw HttpError(409, "Email in use");
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
-//   const avatarURL = gravatar.url(email);
-  
   const verificationCode = nanoid();
+
   const newUser = await User.create({ ...req.body, password: hashPassword, verificationCode });
 
   const verifyEmail = {
@@ -52,7 +51,7 @@ if (!user) {
 }
 await User.findByIdAndUpdate(user._id, { verify: true, verificationCode: "" });
 res.json({
-  message: "Verification successful",
+  message: "Email successfully verified ",
 })
 };
 
@@ -82,6 +81,10 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     throw HttpError(401, "Email or password invalid");
+  }
+
+  if(!user.verify) {
+    throw HttpError(401,"Please Verify your email")
   }
   const passwordCompare = await bcrypt.compare(password, user.password);
   if (!passwordCompare) {
@@ -151,3 +154,6 @@ export default {
   logout: ctrlWrapper(logout),
 //   updateAvatar: ctrlWrapper(updateAvatar)
 };
+
+// Line 31 - after deploy instead of localhost (in BASE_URL) to put 
+// a real address of backend
