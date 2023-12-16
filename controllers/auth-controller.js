@@ -100,16 +100,18 @@ const login = async (req, res) => {
   await User.findByIdAndUpdate(id, { token });
 
   res.status(200).json({
-    token,
+    token, 
+    user,
   });
 };
 
 const getCurrent = (req, res) => {
-  const { email, subscription } = req.user;
+  const { username, email } = req.user;
 
   res.json({
+    username,
     email,
-    subscription,
+    
   });
 };
 

@@ -3,7 +3,7 @@ import express from "express";
 import winesController from '../../controllers/wines-controller.js';
 import   { upload }   from "../../middleware/index.js";
 
-import * as wineSchema from "../../models/Wine.js"
+import * as wineSchema from "../../models/Wine.js";
 
 import {validateBody} from '../../decorators/index.js';
 // import {isValidId} from "../../middlewares/index.js";

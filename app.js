@@ -5,6 +5,7 @@ import "dotenv/config";
 
 import authRouter from "./routes/api/auth-router.js";
 import winesRouter from "./routes/api/wines-router.js";
+import reviewsRouter from "./routes/api/reviews-router.js";
 
 // dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(express.static("public"));
 
 app.use("/api/auth", authRouter);
 app.use("/api/wines", winesRouter);
+app.use("/api/reviews", reviewsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' })
@@ -31,7 +33,7 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message, })
 })
 
-export default app
+export default app;
 
 
 

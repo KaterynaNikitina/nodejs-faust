@@ -21,11 +21,10 @@ authRouter.post("/verify", userEmailValidate, authController.resendVerifyEmail);
 
 authRouter.post("/login", userSigninValidate, authController.login);
 
-authRouter.get("/current", authenticate, authController.getCurrent);
+authRouter.get("/users/current", authenticate, authController.getCurrent);
 
 authRouter.post("/logout", authenticate, authController.logout);
 
-// authRouter.patch("/avatars", authenticate, upload.single("avatarURL"), authController.updateAvatar);
 
 export default authRouter;
  
