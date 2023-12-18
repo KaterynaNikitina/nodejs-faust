@@ -2,9 +2,6 @@ import User from "../models/User.js";
 
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-// import path from "path";
-// import fs from "fs/promises";
-// import jimp from "jimp";
 import { nanoid } from "nanoid";
 
 import { HttpError, sendEmail } from "../helpers/index.js";

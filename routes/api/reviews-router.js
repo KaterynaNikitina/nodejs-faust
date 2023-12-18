@@ -10,19 +10,9 @@ reviewsRouter.get("/", ctrl.getAllReviews);
 
 reviewsRouter.get("/own", authenticate, ctrl.getOwnReview);
 
-reviewsRouter.post(
-  "/own",
-  authenticate,
-  validateBody(addSchema),
-  ctrl.addReview
-);
+reviewsRouter.post("/own", authenticate, validateBody(addSchema), ctrl.addReview);
 
-reviewsRouter.patch(
-  "/own",
-  authenticate,
-  validateBody(changeSchema),
-  ctrl.updateReview
-);
+reviewsRouter.patch("/own", authenticate, validateBody(changeSchema), ctrl.updateReview);
 
 reviewsRouter.delete("/own", authenticate, ctrl.deleteReview);
 

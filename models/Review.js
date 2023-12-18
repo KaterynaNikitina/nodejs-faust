@@ -4,7 +4,6 @@ import { handleSaveError } from "./hooks.js";
 
 const reviewSchema = new Schema(
   {
-
     comment: {
       type: String,
     },

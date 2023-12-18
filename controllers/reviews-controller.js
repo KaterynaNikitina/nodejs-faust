@@ -4,7 +4,7 @@ import HttpsError from "../helpers/HttpError.js";
 
 const getAllReviews = async (req, res) => {
   const result = await Review.find()
-    .populate("owner", "userName")
+    .populate("owner", "username")
     .exec();
   res.status(200).json(result);
 
@@ -27,13 +27,6 @@ const getOwnReview = async (req, res) => {
 const addReview = async (req, res) => {
 
   const { _id: owner } = req.user;
-  
-  // const { userName: name } = req.user;
-  // const uname = req.user.userName
-  // const id = req.user._id;
-  // const { comment, raiting } = req.body;
-
-  // const owner = { _id: id, userName: uname}
 
   const result = await Review.create({ ...req.body, owner });
   res.status(201).json(result);
