@@ -47,8 +47,8 @@ const add = async (req, res) => {
 // }
 
 const deleteById = async (req, res) => {
-    const { id } = req.params;
-    const result = await Wine.findOneAndDelete(id);
+    const { wineId } = req.params;
+    const result = await Wine.findOneAndDelete({_id: wineId});
     console.log(result); 
     if (!result) {
         throw HttpError(404, `Wine with id=${id} not found`);
