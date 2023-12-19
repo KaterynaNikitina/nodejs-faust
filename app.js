@@ -18,8 +18,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-
-
 app.use("/api/auth", authRouter);
 app.use("/api/wines", winesRouter);
 app.use("/api/reviews", reviewsRouter);

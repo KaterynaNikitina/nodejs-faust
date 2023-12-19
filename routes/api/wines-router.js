@@ -23,7 +23,7 @@ winesRouter.get("/", winesController.getAll);
 
 winesRouter.post("/", upload.single("poster"), wineAddValidate, winesController.add);
 
-// winesRouter.put("/:contactId", isValidId, wineUpdateValidate, winesController.updateById);
+// winesRouter.put("/:wineId", isValidId, wineUpdateValidate, winesController.updateById);
 
 winesRouter.delete("/:wineId", isValidId, winesController.deleteById);
 
