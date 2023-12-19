@@ -3,7 +3,7 @@ import authController from "../../controllers/auth-controller.js";
 
 import { validateBody } from "../../decorators/index.js";
 import * as userSchemas from "../../models/User.js";
-import { authenticate } from "../../middleware/index.js";
+import { authenticate } from "../../middlewares/index.js";
 // import { upload } from "../../middlewares/index.js";
 
 const authRouter = express.Router();

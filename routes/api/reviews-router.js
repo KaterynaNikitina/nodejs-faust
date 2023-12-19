@@ -3,7 +3,7 @@ const reviewsRouter = express.Router();
 import { addSchema, changeSchema } from "../../models/Review.js";
 import validateBody from "../../decorators/validateBody.js";
 import ctrl from "../../controllers/reviews-controller.js";
-import authenticate from "../../middleware/authenticate.js";
+import authenticate from "../../middlewares/authenticate.js";
 
 
 reviewsRouter.get("/", ctrl.getAllReviews);

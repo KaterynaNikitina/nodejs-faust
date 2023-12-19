@@ -2,7 +2,7 @@ import fs from "fs/promises";
 
 import Wine from "../models/Wine.js";
 
-// import { HttpError } from "../helpers/index.js";
+import { HttpError } from "../helpers/index.js";
 import { cloudinary } from "../helpers/index.js";
 import { ctrlWrapper } from "../decorators/index.js";
 
@@ -35,6 +35,7 @@ const add = async (req, res) => {
 }
 
 
+
 // const updateById = async (req, res) => {
 //     const { id } = req.params;
 //     const result = await Wine.findByIdAndUpdate(id, req.body);
@@ -45,22 +46,22 @@ const add = async (req, res) => {
 //     res.json(result);
 // }
 
-// const deleteById = async (req, res) => {
-//     const { id } = req.params;
-//     const result = await Wine.findByIdAndDelete(id);
-//     if (!result) {
-//         throw HttpError(404, `Movie with id=${id} not found`);
-//     }
+const deleteById = async (req, res) => {
+    const { id } = req.params;
+    const result = await Wine.findByIdAndDelete(id);
+    if (!result) {
+        throw HttpError(404, `Wine with id=${id} not found`);
+    }
 
-//     res.json({
-//         message: "Delete success"
-//     })
-// }
+    res.json({
+        message: "Delete success"
+    })
+}
 
 export default {
     getAll: ctrlWrapper(getAll),
-    // getById: ctrlWrapper(getById),
     add: ctrlWrapper(add),
+    deleteById: ctrlWrapper(deleteById),
+    // getById: ctrlWrapper(getById),
     // updateById: ctrlWrapper(updateById),
-    // deleteById: ctrlWrapper(deleteById),
 }

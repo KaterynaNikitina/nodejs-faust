@@ -37,7 +37,7 @@ export const wineAddSchema = Joi.object({
     country: Joi.string().required().messages({ "any.required": "Enter country" }),
     volume: Joi.string().required().messages({ "any.required": "Enter volume" }),
     price: Joi.number().required().messages({ "any.required": "Enter price" }),
-    // poster: Joi.string().required().messages({ "any.required": "Enter poster" }),
+    poster: Joi.string(),
 
   });
   
