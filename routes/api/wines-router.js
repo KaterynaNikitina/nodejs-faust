@@ -19,12 +19,10 @@ winesRouter.use(authenticate);
 
 winesRouter.get("/", winesController.getAll);
 
-// winesRouter.get("/:wineId", isValidId, winesController.getById);
-
 winesRouter.post("/", upload.single("poster"), wineAddValidate, winesController.add);
 
-// winesRouter.put("/:wineId", isValidId, wineUpdateValidate, winesController.updateById);
-
+winesRouter.put("/:wineId", isValidId, wineUpdateValidate, winesController.updateById);
+ 
 winesRouter.delete("/:wineId", isValidId, winesController.deleteById);
 
 export default winesRouter;

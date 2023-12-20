@@ -12,15 +12,6 @@ const getAll = async (req, res) => {
     res.json(result);
 };
 
-// const getById = async (req, res) => {
-//     const { id } = req.params;
-//     const result = await Wine.findOne({_id: id});
-//     if (!result) {
-//         throw HttpError(404, `Wine with id=${id} not found`);
-//     }
-
-//     res.json(result);
-// }
 
 const add = async (req, res) => {
     // console.log(req.body);
@@ -35,16 +26,15 @@ const add = async (req, res) => {
 }
 
 
+const updateById = async (req, res) => {
+    const { wineId  } = req.params;
+    const result = await Wine.findOneAndUpdate({_id: wineId}, req.body, {new: true});
+    if (!result) {
+        throw HttpError(404, `Wine with id=${id} not found`);
+    }
 
-// const updateById = async (req, res) => {
-//     const { id } = req.params;
-//     const result = await Wine.findByIdAndUpdate(id, req.body);
-//     if (!result) {
-//         throw HttpError(404, `Movie with id=${id} not found`);
-//     }
-
-//     res.json(result);
-// }
+    res.status(200).json(result);
+}
 
 const deleteById = async (req, res) => {
     const { wineId } = req.params;
@@ -64,5 +54,5 @@ export default {
     add: ctrlWrapper(add),
     deleteById: ctrlWrapper(deleteById),
     // getById: ctrlWrapper(getById),
-    // updateById: ctrlWrapper(updateById),
+    updateById: ctrlWrapper(updateById),
 }
